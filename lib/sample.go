@@ -2,12 +2,15 @@ package mpsample
 
 import (
 	"flag"
+	"fmt"
 	"math/rand"
 	"strings"
 	"time"
 
 	mp "github.com/mackerelio/go-mackerel-plugin"
 )
+
+const version = "v0.0.1"
 
 // SamplePlugin mackerel plugin
 type SamplePlugin struct {
@@ -49,8 +52,15 @@ func (p *SamplePlugin) FetchMetrics() (map[string]float64, error) {
 
 // Do the plugin
 func Do() {
+	optVersion := flag.Bool("version", false, "Show version")
 	optPrefix := flag.String("metric-key-prefix", "", "Metric key prefix")
 	flag.Parse()
+
+	if *optVersion {
+		fmt.Println(version)
+		return
+	}
+
 	plugin := mp.NewMackerelPlugin(&SamplePlugin{
 		Prefix: *optPrefix,
 	})
