@@ -2,6 +2,7 @@ setup:
 	go get \
 		github.com/goreleaser/goreleaser \
 		github.com/golang/lint/golint
+	go get -d -t ./...
 
 test: setup
 	go test -v ./...
