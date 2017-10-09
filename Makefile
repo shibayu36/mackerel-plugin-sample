@@ -1,6 +1,7 @@
 setup:
 	go get \
-		github.com/goreleaser/goreleaser \
+		github.com/laher/goxc \
+		github.com/tcnksm/ghr \
 		github.com/golang/lint/golint
 	go get -d -t ./...
 
